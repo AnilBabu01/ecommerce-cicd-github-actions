@@ -20,6 +20,10 @@ import ForgotPassword from './pages/ForgetPassword';
 import ResetPassword from './pages/resetPassword';
 import Notifications from './pages/Notifications';
 import Settings from './pages/Settings';
+
+
+
+
 // import ProtectedRoute from './components/ProtectedRoute';
 
 // Protected Route component
