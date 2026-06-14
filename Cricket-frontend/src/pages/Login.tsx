@@ -231,7 +231,7 @@ export default function Login() {
                       </svg>
                       Verifying...
                     </>
-                  ) : 'Verify & Login By CIDE'}
+                  ) : 'Verify & Login'}
                 </button>
 
                 <div className="text-center">
@@ -250,7 +250,7 @@ export default function Login() {
             <>
               {/* ── Normal login screen ── */}
               <div className="text-center mb-6">
-                <h2 className="font-poppins font-medium text-[30px] text-[#333333]">Login</h2>
+                <h2 className="font-poppins font-medium text-[30px] text-[#333333]">Login By CICD PIPELINE</h2>
               </div>
 
               {/* Tab toggle */}
