@@ -47,18 +47,18 @@ jobs:
 
           git pull origin main
 
-          cd cricket-backend
+          cd Cricket-backend
           npm install
 
           pm2 restart cricket-backend
 
-          cd ../cricket-frontend
+          cd ../Cricket-frontend
           npm install
           npm run build
 
           pm2 restart cricket-frontend
 
-          cd ../cricket-admin
+          cd ../Cricket-admin
           npm install
           npm run build
 
