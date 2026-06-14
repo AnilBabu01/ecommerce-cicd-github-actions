@@ -231,7 +231,7 @@ export default function Login() {
                       </svg>
                       Verifying...
                     </>
-                  ) : 'Verify & Login'}
+                  ) : 'Verify & Login By CIDE'}
                 </button>
 
                 <div className="text-center">
