@@ -43,7 +43,7 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
 
         script: |
-          cd /home/ubuntu/cricket-app
+          cd /home/ubuntu/ecommerce-cicd-github-actions
 
           git pull origin main
 
