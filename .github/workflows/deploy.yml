@@ -20,18 +20,18 @@ jobs:
 
     - name: Install Backend
       run: |
-        cd cricket-backend
+        cd Cricket-backend
         npm install
 
     - name: Install Frontend
       run: |
-        cd cricket-frontend
+        cd Cricket-frontend
         npm install
         npm run build
 
     - name: Install Admin
       run: |
-        cd cricket-admin
+        cd Cricket-Admin
         npm install
         npm run build
 
