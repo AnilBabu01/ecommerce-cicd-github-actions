@@ -230,6 +230,11 @@ Install PostgreSQL
 ```bash
 sudo apt install postgresql postgresql-contrib -y
 ```
+Login to postgresql
+
+```sql
+sudo -i -u postgres
+```
 
 Create Database
 
