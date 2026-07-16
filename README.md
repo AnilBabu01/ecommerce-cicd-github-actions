@@ -233,7 +233,7 @@ sudo apt install postgresql postgresql-contrib -y
 Switch to the PostgreSQL user
 
 ```sql
-sudo -i -u postgres
+sudo -u postgres psql
 ```
 
 Create Database
