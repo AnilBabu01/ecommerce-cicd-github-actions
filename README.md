@@ -1,177 +1,672 @@
-# 🏏 BatBazaar
+# 🏏 Cricket Application - Full Stack DevOps Deployment
 
-> A full-stack cricket equipment e-commerce platform with a customer storefront, REST API backend, and a separate admin dashboard.
-
-🌐 **Live:** 
-- Admin: https://bat-bazaar-8k7d.vercel.app/
-- frontend: https://bat-bazaar-vec7.vercel.app/     
-- backend: https://bat-bazaar.vercel.app/
+A production-ready Full Stack Cricket Application consisting of **Cricket-Frontend**, **Cricket-Admin**, and **Cricket-Backend** deployed on **AWS EC2** using **GitHub Actions CI/CD**, **PostgreSQL**, **PM2**, **Nginx**, **Route53**, and **Let's Encrypt SSL**.
 
 ---
 
-## 📁 Project Structure
+# 📌 Project Overview
+
+This project demonstrates a complete DevOps implementation for deploying a production-ready MERN/Node.js application using AWS cloud services and CI/CD best practices.
+
+### Features
+
+- Cricket Frontend (React)
+- Cricket Admin Panel (React)
+- Cricket Backend (Node.js + Express)
+- PostgreSQL Database
+- GitHub Actions CI/CD
+- AWS EC2 Deployment
+- PM2 Process Manager
+- Nginx Reverse Proxy
+- Route53 DNS Configuration
+- SSL using Let's Encrypt
+- Zero manual deployment after Git Push
+
+---
+
+# 📂 Repository Structure
 
 ```
-BatBazaar/
-├── Cricket-frontend/   # Customer-facing React storefront
-├── Cricket-Admin/      # Admin dashboard (React)
-└── Cricket-backend/    # Node.js / Express REST API
+cricket-app/
+│
+├── cricket-admin/
+│
+├── cricket-backend/
+│
+├── cricket-frontend/
+│
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+│
+└── README.md
 ```
 
 ---
 
-## ✨ Features
+# 🛠 Technology Stack
 
-### 🛍️ Customer Storefront
-- Browse cricket equipment — bats, helmets, gloves, bags, stumps & kits
-- Product detail pages with pricing and stock info
-- Add to cart (guest + authenticated users)
-- Checkout with delivery address selection and validation
-- Multiple payment options — Card, Net Banking, Cash on Delivery
-- Gift card / promo code support
-- Order placement and confirmation
-- User profile with saved addresses (set default, add/remove)
-- JWT-based authentication (register / login)
-
-### 🖥️ Admin Dashboard
-- Secure admin login (JWT-protected)
-- Dashboard overview — revenue, orders, products, active users
-- Recent orders with live status pills
-- Low stock alerts
-- Quick actions — add product, manage orders, analytics
-- Refresh dashboard data on demand
-
-### ⚙️ Backend API
-- RESTful API built with Node.js + Express
-- JWT authentication for both users and admins
-- Cart management (add, update, clear)
-- Order creation and management
-- Address CRUD with default address support
-- Product and inventory management
-- Admin-specific routes with role-based access
-
----
-
-## 🛠️ Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Frontend | React 18, TypeScript, Vite |
-| Styling | Tailwind CSS |
-| Routing | React Router v6 |
-| HTTP Client | Axios |
-| Notifications | React Hot Toast |
-| Icons | Lucide React |
+| Category | Technology |
+|----------|------------|
+| Frontend | React.js |
+| Admin | React.js |
 | Backend | Node.js, Express |
-| Auth | JWT (JSON Web Tokens) |
-| Deployment | Vercel |
+| Database | PostgreSQL |
+| CI/CD | GitHub Actions |
+| Cloud | AWS EC2 |
+| DNS | Route53 |
+| Reverse Proxy | Nginx |
+| Process Manager | PM2 |
+| SSL | Let's Encrypt |
+| Version Control | Git & GitHub |
 
 ---
 
-## 🚀 Getting Started
+# 🌐 Production URLs
 
-### Prerequisites
-- Node.js v18+
-- npm or yarn
+| Service | URL |
+|----------|------|
+| Frontend | https://ffindiano1.xyz |
+| Admin | https://admin.ffindiano1.xyz |
+| Backend API | https://api.ffindiano1.xyz |
 
-### 1. Clone the repository
+---
 
-```bash
-git clone https://github.com/Tanisha-b3/BatBazaar.git
-cd BatBazaar
+# 🏗 Architecture
+
+```
+                    Git Push
+                       │
+                       ▼
+                 GitHub Repository
+                       │
+                       ▼
+               GitHub Actions CI/CD
+                       │
+                       ▼
+                 AWS EC2 Ubuntu
+                       │
+        ┌──────────────┼──────────────┐
+        │              │              │
+        ▼              ▼              ▼
+ Frontend         Backend          Admin
+  React            Node            React
+  PM2              PM2             PM2
+        │              │              │
+        └──────────────┼──────────────┘
+                       ▼
+                     Nginx
+                       │
+               Route53 + SSL
+                       │
+                       ▼
+                  Internet Users
+
+Backend
+      │
+      ▼
+ PostgreSQL Database
 ```
 
-### 2. Backend
+---
+
+# ☁ AWS Infrastructure
+
+Server Configuration
+
+```
+Ubuntu 24.04 LTS
+
+t3.medium
+
+30 GB Storage
+```
+
+Security Group
+
+```
+22 SSH
+
+80 HTTP
+
+443 HTTPS
+
+3000 Frontend
+
+3001 Backend
+
+3002 Admin
+```
+
+---
+
+# 🚀 Deployment Workflow
+
+```
+Developer
+
+↓
+
+Git Push
+
+↓
+
+GitHub Repository
+
+↓
+
+GitHub Actions
+
+↓
+
+SSH into EC2
+
+↓
+
+Git Pull
+
+↓
+
+Install Dependencies
+
+↓
+
+Build React Applications
+
+↓
+
+Restart PM2
+
+↓
+
+Application Live
+```
+
+---
+
+# 📦 Backend Setup
+
+Navigate
 
 ```bash
-cd Cricket-backend
+cd cricket-backend
+```
+
+Install packages
+
+```bash
 npm install
 ```
 
-Create a `.env` file:
-
-```env
-PORT=5000
-JWT_SECRET=your_jwt_secret
-JWT_ADMIN_SECRET=your_admin_jwt_secret
-DATABASE_URL=your_database_url
-```
+Run locally
 
 ```bash
 npm run dev
 ```
 
-### 3. Frontend (Customer)
+Production
 
 ```bash
-cd Cricket-frontend
-npm install
-npm run dev
+npm start
 ```
 
-Create a `src/config.ts` file:
+Package.json
 
-```ts
-export const API_URL = 'http://localhost:5000';
+```json
+{
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  }
+}
 ```
 
-### 4. Admin Dashboard
+---
+
+# 🗄 PostgreSQL Setup
+
+Install PostgreSQL
 
 ```bash
-cd Cricket-Admin
-npm install
-npm run dev
+sudo apt install postgresql postgresql-contrib -y
 ```
 
-Uses the same `API_URL` config pointing to the backend.
+Create Database
+
+```sql
+CREATE DATABASE cricketdb;
+```
+
+Create User
+
+```sql
+CREATE USER cricketuser
+WITH PASSWORD 'StrongPassword123';
+```
+
+Grant Permissions
+
+```sql
+GRANT ALL PRIVILEGES
+ON DATABASE cricketdb
+TO cricketuser;
+```
 
 ---
 
-## 📦 Key Pages
+# 🔐 Environment Variables
 
-| Route | Description |
-|---|---|
-| `/` | Home / product listing |
-| `/products` | Browse all products |
-| `/products/:id` | Product detail |
-| `/cart` | Shopping cart |
-| `/checkout` | Checkout with address & payment |
-| `/profile` | User profile & saved addresses |
-| `/orders` | Order history |
-| `/login` | User login |
-| `/register` | User registration |
+Backend
 
-### Admin Routes
-| Route | Description |
-|---|---|
-| `/` | Dashboard overview |
-| `/products` | Product management |
-| `/orders` | Order management |
-| `/analytics` | Sales analytics |
+```
+PORT=3001
+
+DB_HOST=localhost
+
+DB_PORT=5432
+
+DB_NAME=cricketdb
+
+DB_USER=cricketuser
+
+DB_PASSWORD=StrongPassword123
+```
 
 ---
 
-## 🔐 Authentication
+# ⚙ PM2 Configuration
 
-- Customers authenticate via `/api/auth/login` and `/api/auth/register.`
-- Admins authenticate via `/api/admin/auth/login.`
-- Tokens are stored in `localStorage` and sent as `Bearer` tokens on every protected request
-- 401 responses clear the token and redirect to login
+Backend
+
+```bash
+pm2 start server.js --name cricket-backend
+```
+
+Frontend
+
+```bash
+pm2 serve build 3000 --name cricket-frontend
+```
+
+Admin
+
+```bash
+pm2 serve build 3002 --name cricket-admin
+```
+
+Save
+
+```bash
+pm2 save
+```
+
+Auto Start
+
+```bash
+pm2 startup
+```
 
 ---
 
-## 🤝 Contributing
+# 🌍 Route53 Configuration
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change.
+Hosted Zone
+
+```
+ffindiano1.xyz
+```
+
+DNS Records
+
+```
+ffindiano1.xyz
+
+↓
+
+EC2 Public IP
+```
+
+```
+admin.ffindiano1.xyz
+
+↓
+
+EC2 Public IP
+```
+
+```
+api.ffindiano1.xyz
+
+↓
+
+EC2 Public IP
+```
 
 ---
 
-## 👩‍💻 Author
+# 🌐 Nginx Reverse Proxy
 
-**Tanisha Borana** — [@Tanisha-b3](https://github.com/Tanisha-b3)
+Frontend
+
+```
+ffindiano1.xyz
+
+↓
+
+localhost:3000
+```
+
+Admin
+
+```
+admin.ffindiano1.xyz
+
+↓
+
+localhost:3002
+```
+
+Backend
+
+```
+api.ffindiano1.xyz
+
+↓
+
+localhost:3001
+```
 
 ---
 
-## 📄 License
+# 🔒 SSL Configuration
 
-This project is open source and available under the [MIT License](LICENSE).
+Install Certbot
+
+```bash
+sudo apt install certbot python3-certbot-nginx -y
+```
+
+Generate SSL
+
+```bash
+sudo certbot --nginx
+```
+
+Domains
+
+```
+ffindiano1.xyz
+
+admin.ffindiano1.xyz
+
+api.ffindiano1.xyz
+```
+
+---
+
+# 🔄 GitHub Actions CI/CD
+
+Workflow
+
+```
+Push Code
+
+↓
+
+Checkout Repository
+
+↓
+
+Install Dependencies
+
+↓
+
+Build React Apps
+
+↓
+
+SSH to EC2
+
+↓
+
+Git Pull
+
+↓
+
+Install Packages
+
+↓
+
+Restart PM2
+
+↓
+
+Deployment Completed
+```
+
+GitHub Secrets
+
+```
+EC2_HOST
+
+EC2_USER
+
+EC2_KEY
+```
+
+---
+
+# 📊 PM2 Monitoring
+
+Check running applications
+
+```bash
+pm2 list
+```
+
+Logs
+
+```bash
+pm2 logs
+```
+
+Status
+
+```bash
+pm2 status
+```
+
+Restart
+
+```bash
+pm2 restart all
+```
+
+---
+
+# 📁 Useful Commands
+
+Clone Repository
+
+```bash
+git clone <repository-url>
+```
+
+Install Dependencies
+
+```bash
+npm install
+```
+
+Build React
+
+```bash
+npm run build
+```
+
+Run Backend
+
+```bash
+npm start
+```
+
+Restart PM2
+
+```bash
+pm2 restart all
+```
+
+Restart Nginx
+
+```bash
+sudo systemctl restart nginx
+```
+
+Restart PostgreSQL
+
+```bash
+sudo systemctl restart postgresql
+```
+
+---
+
+# 📈 CI/CD Flow
+
+```
+Developer
+
+↓
+
+Git Commit
+
+↓
+
+Git Push
+
+↓
+
+GitHub
+
+↓
+
+GitHub Actions
+
+↓
+
+SSH
+
+↓
+
+EC2
+
+↓
+
+Git Pull
+
+↓
+
+npm install
+
+↓
+
+npm run build
+
+↓
+
+pm2 restart
+
+↓
+
+Production
+```
+
+---
+
+# 📋 Deployment Checklist
+
+- AWS EC2 Created
+- Ubuntu Configured
+- Node.js Installed
+- PostgreSQL Installed
+- Database Created
+- Repository Cloned
+- Backend Configured
+- Frontend Configured
+- Admin Configured
+- PM2 Installed
+- Nginx Configured
+- Route53 DNS Configured
+- SSL Enabled
+- GitHub Secrets Added
+- GitHub Actions Configured
+- CI/CD Pipeline Working
+- Production Deployment Successful
+
+---
+
+# 🎯 Key DevOps Skills Demonstrated
+
+- AWS EC2 Deployment
+- Linux Server Administration
+- PostgreSQL Database Management
+- Git Version Control
+- GitHub Actions CI/CD
+- PM2 Process Management
+- Nginx Reverse Proxy
+- Route53 DNS Management
+- SSL/TLS Configuration
+- Environment Variable Management
+- Production Deployment
+- Zero-Downtime Application Deployment
+
+---
+
+# 👨‍💻 Author
+
+**Anil Babu**
+
+**Role:** Junior DevOps Engineer
+
+### Skills
+
+- AWS
+- Linux
+- Docker
+- Kubernetes
+- GitHub Actions
+- Jenkins
+- Terraform
+- Ansible
+- PostgreSQL
+- Nginx
+- PM2
+- CI/CD
+- DevOps
+
+---
+
+# ⭐ Project Highlights
+
+✅ Full Stack Cricket Application
+
+✅ Single GitHub Repository
+
+✅ Production Ready Infrastructure
+
+✅ Automated CI/CD Pipeline
+
+✅ PostgreSQL Database
+
+✅ AWS EC2 Deployment
+
+✅ Route53 Domain Mapping
+
+✅ Nginx Reverse Proxy
+
+✅ HTTPS SSL Enabled
+
+✅ PM2 Process Management
+
+✅ Zero Manual Deployment
+
+---
